@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+import "./global.css";
+
+import { Header } from "./components/Header";
+import { List } from "./components/List";
+
+export type Todo = {
+  id: string;
+  text: string;
+  isCompleted: boolean;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  function handleMarkToDo(id: string) {
+    const index = todos.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      const updatedItems = [...todos];
+      updatedItems[index].isCompleted = !updatedItems[index].isCompleted;
+      setTodos(updatedItems);
+    }
+  }
+
+  function handleCreate(text: string) {
+    const newToDo: Todo = { id: uuidv4(), text: text, isCompleted: false };
+    setTodos([...todos, newToDo]);
+  }
+
+  function handleDeleteToDo(id: string) {
+    const toDoListWithoutDeletedOne = todos.filter((todo) => todo.id !== id);
+    setTodos(toDoListWithoutDeletedOne);
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <>
+      <Header handleCreate={handleCreate} />
+      <List
+        todos={todos}
+        handleDeleteToDo={handleDeleteToDo}
+        handleMarkToDo={handleMarkToDo}
+      />
+    </>
+  );
 }
 
-export default App
+export default App;

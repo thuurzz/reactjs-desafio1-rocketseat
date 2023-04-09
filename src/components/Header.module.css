@@ -1,0 +1,22 @@
+.header {
+  position: absolute;
+  height: 200px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  color: whitesmoke;
+
+  /* Gray 700 */
+
+  background: #0d0d0d;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.logo {
+  width: 126px;
+  height: 48px;
+}

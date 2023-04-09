@@ -1,0 +1,46 @@
+.list {
+  /* Tasks */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 12px;
+
+  position: absolute;
+  width: 736px;
+  height: 451px;
+  left: calc(50% - 736px / 2);
+  top: 291px;
+}
+
+.labelBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding-bottom: 1.5rem;
+}
+
+.label {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.labelCountChecked {
+  color: #8284fa;
+  font-weight: 700;
+}
+
+.number {
+  background-color: #262626;
+  border-radius: 16px;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  color: var(--gray-100);
+}
+
+.divider {
+  border-top: 1px solid var(--gray-300);
+  width: 100%;
+}
