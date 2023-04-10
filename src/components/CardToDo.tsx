@@ -38,7 +38,7 @@ export function CardToDo({
               size={24}
             />
           )}
-          <p>{todo.text}</p>
+          <p className={style.textToDo}>{todo.text}</p>
 
         <Trash size={24} onClick={handleDelete}/>
       </div>
